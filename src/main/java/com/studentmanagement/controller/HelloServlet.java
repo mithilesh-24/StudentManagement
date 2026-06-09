@@ -1,4 +1,4 @@
-package com.studentmanagement.studentmanagement;
+package com.studentmanagement.controller;
 
 import java.io.*;
 
