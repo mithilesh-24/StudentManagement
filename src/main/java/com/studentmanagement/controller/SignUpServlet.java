@@ -9,20 +9,20 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.sql.SQLException;
+import java.util.Arrays;
 
 @WebServlet("/signup")
-public class SignUp extends HttpServlet {
+public class SignUpServlet extends HttpServlet {
     public void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
         req.getRequestDispatcher("signup.jsp").forward(req,res);
     }
 
     public void doPost(HttpServletRequest req,HttpServletResponse res) throws ServletException, IOException {
-        String username = req.getParameter("uname");
+        String username = req.getParameter("username");
         String name = req.getParameter("name");
         int age = Integer.parseInt(req.getParameter("age"));
-        String department = req.getParameter("dept");
+        String department = req.getParameter("department");
         String password = req.getParameter("pass");
 
         User user = new User();
@@ -34,9 +34,9 @@ public class SignUp extends HttpServlet {
 
         try {
             UserDao.register(user);
+            res.sendRedirect("login.jsp");
         } catch (SQLException | ClassNotFoundException e) {
-
-            req.getRequestDispatcher("index.jsp").forward(req,res);
+            throw new RuntimeException(e);
         }
     }
 }
