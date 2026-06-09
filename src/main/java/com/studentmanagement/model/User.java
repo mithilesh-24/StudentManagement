@@ -1,6 +1,6 @@
-package com.studentmanagement.dao;
+package com.studentmanagement.model;
 
-public class Student {
+public class User {
     private String name;
     private int age;
     private String username,password;
